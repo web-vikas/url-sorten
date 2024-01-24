@@ -25,14 +25,14 @@ import {
 import Link from "next/link";
 import { getURLs } from "../action";
 import useStore from "../store";
-export type MyData = {
+type MyData = {
   _id: string;
   id: string;
   full_url: string;
   createdAt: string;
 };
 
-export const columns: ColumnDef<MyData>[] = [
+const columns: ColumnDef<MyData>[] = [
   {
     accessorKey: "_id",
     header: "ID",
