@@ -35,7 +35,7 @@ export default function Home() {
         variant: "destructive",
       });
     } else {
-      setGeneratedURL(`https://ijkl.fun/${res.data.id}`);
+      setGeneratedURL(`https://hit-go.vercel.app/${res.data.id}`);
       toast({
         title: "Link Generated !",
         description: `ijkl.fun/${res.data.id}`,

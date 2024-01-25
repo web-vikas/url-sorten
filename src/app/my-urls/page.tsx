@@ -39,11 +39,11 @@ const columns: ColumnDef<MyData>[] = [
     header: "Short URL",
     cell: ({ row }) => (
       <Link
-        href={`https://ijkl.fun/${row.getValue("id")}`}
+        href={`https://hit-go.vercel.app/${row.getValue("id")}`}
         target="_blank"
         rel="noopener noreferrer"
       >
-        {`https://ijkl.fun/${row.getValue("id")}`}
+        {`https://hit-go.vercel.app/${row.getValue("id")}`}
       </Link>
     ),
   },
