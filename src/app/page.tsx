@@ -35,10 +35,10 @@ export default function Home() {
         variant: "destructive",
       });
     } else {
-      setGeneratedURL(`https://shad.iv/${res.data.id}`);
+      setGeneratedURL(`https://ijkl.fun/${res.data.id}`);
       toast({
         title: "Link Generated !",
-        description: `shad.iv/${res.data.id}`,
+        description: `ijkl.fun/${res.data.id}`,
       });
     }
   };

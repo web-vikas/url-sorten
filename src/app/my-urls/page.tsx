@@ -39,11 +39,11 @@ const columns: ColumnDef<MyData>[] = [
     header: "Short URL",
     cell: ({ row }) => (
       <Link
-        href={`https://shad.iv/${row.getValue("id")}`}
+        href={`https://ijkl.fun/${row.getValue("id")}`}
         target="_blank"
         rel="noopener noreferrer"
       >
-        {`https://shad.iv/${row.getValue("id")}`}
+        {`https://ijkl.fun/${row.getValue("id")}`}
       </Link>
     ),
   },
