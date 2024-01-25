@@ -6,7 +6,12 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ClipboardCopyIcon, MagicWandIcon } from "@radix-ui/react-icons";
+import {
+  ClipboardCopyIcon,
+  ExternalLinkIcon,
+  LockClosedIcon,
+  MagicWandIcon,
+} from "@radix-ui/react-icons";
 import QRCode from "qrcode.react";
 import useStore from "./store";
 import { useState } from "react";
@@ -17,6 +22,13 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import Link from "next/link";
 
 export default function Home() {
   const isLoggedIn = useStore((state) => state.isLoggedIn);
@@ -24,10 +36,13 @@ export default function Home() {
   const { toast } = useToast();
   const [fullURL, setFullURL] = useState(String);
   const [generatedURL, setGeneratedURL] = useState(String);
+  const [customEndPoint, setCustomEndPoint] = useState(String);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handelGenerateURL = async () => {
+    setIsLoading(true);
     setGeneratedURL("");
-    const res = await generateURL(fullURL, access_token);
+    const res = await generateURL(fullURL, customEndPoint, access_token);
     if (res.data.error) {
       toast({
         title: "Uh oh! Something went wrong.",
@@ -38,9 +53,10 @@ export default function Home() {
       setGeneratedURL(`https://hit-go.vercel.app/${res.data.id}`);
       toast({
         title: "Link Generated !",
-        description: `ijkl.fun/${res.data.id}`,
+        description: `ijkl.vercel.app/${res.data.id}`,
       });
     }
+    setIsLoading(false);
   };
   return (
     <>
@@ -95,7 +111,108 @@ export default function Home() {
                   className="mt-3"
                   onClick={handelGenerateURL}
                 >
-                  <MagicWandIcon className="mr-3" /> Generate URL
+                  {isLoggedIn && <MagicWandIcon className="mr-3" />}
+                  {isLoggedIn ? "Generate URL" : "Login To Generate URL"}
+                </Button>
+              </div>
+              {generatedURL !== "" && (
+                <div className="flex md:flex-row flex-col justify-between">
+                  <div className="flex-1">
+                    <h2 className="text-xl font-semibold py-3">
+                      Generated <span className="text-red-900">URL.</span>
+                    </h2>
+                    <div className="max-w-lg my-2">
+                      <Input type="text" disabled value={generatedURL} />
+                      <div className="flex items-center gap-2 my-3">
+                        <Popover>
+                          <PopoverTrigger>
+                            <Button
+                              asChild
+                              size="icon"
+                              onClick={() => {
+                                navigator.clipboard.writeText(generatedURL);
+                              }}
+                            >
+                              <ClipboardCopyIcon className="text-white p-2" />
+                            </Button>
+                          </PopoverTrigger>
+                          <PopoverContent className="max-w-32 text-center">
+                            Copied !
+                          </PopoverContent>
+                        </Popover>
+
+                        <Link href={generatedURL} target="_blank">
+                          <Button size={"icon"}>
+                            <ExternalLinkIcon />
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-center flex-col">
+                    <h2 className="text-xl font-semibold py-3">
+                      Generated <span className="text-red-900">QR.</span>
+                    </h2>
+                    <div>
+                      <QRCode value={generatedURL} size={200} />
+                    </div>
+                  </div>
+                </div>
+              )}
+            </TabsContent>
+            <TabsContent value="custom">
+              <h1 className="text-xl font-semibold py-3">
+                Shorten a <span className="text-red-900">long link.</span>
+              </h1>
+              <div>
+                <Label htmlFor="URL">
+                  Paste a long URL
+                  <span className="text-red-700 font-extrabold">*</span>
+                </Label>
+                <Input
+                  type="url"
+                  required
+                  value={fullURL}
+                  onChange={(e) => setFullURL(e.target.value)}
+                  placeholder="https://postman.co/workspace/My-Workspace/request/25668016"
+                  className="max-w-lg my-2"
+                />
+              </div>
+              <div>
+                <Label htmlFor="URL">
+                  Custom URL Endpoint
+                  <span className="text-red-700 font-extrabold">*</span>
+                </Label>
+                <div className="flex gap-3 items-center">
+                  <Input
+                    type="text"
+                    disabled
+                    required
+                    value={"hit-go.vercel.app"}
+                    placeholder="wedding"
+                    className="max-w-xs my-2"
+                  />
+                  <span className="font-extrabold">/</span>
+                  <Input
+                    type="url"
+                    required
+                    value={customEndPoint}
+                    onChange={(e) => setCustomEndPoint(e.target.value)}
+                    placeholder="wedding"
+                    maxLength={6}
+                    minLength={4}
+                    className="max-w-32 my-2"
+                  />
+                </div>
+              </div>
+              <div className="">
+                <Button
+                  disabled={!isLoggedIn || isLoading}
+                  className="mt-3"
+                  onClick={handelGenerateURL}
+                >
+                  {isLoggedIn && <MagicWandIcon className="mr-3" />}
+                  {isLoggedIn ? "Generate URL" : "Login To Generate URL"}
                 </Button>
               </div>
               {generatedURL !== "" && (
@@ -135,9 +252,58 @@ export default function Home() {
                 </div>
               )}
             </TabsContent>
-            <TabsContent value="custom">COMING SOON</TabsContent>
           </Tabs>
         </Card>
+        <div className="py-7">
+          <div className="md:max-w-3xl mx-auto">
+            <h1 className="font-bold text-3xl text-center my-5">
+              Frequently asked questions
+            </h1>
+            <Accordion type="single" collapsible>
+              <AccordionItem value="item-1">
+                <AccordionTrigger>What is a URL shortener?</AccordionTrigger>
+                <AccordionContent>
+                  A URL shortener, also known as a link shortener, seems like a
+                  simple tool, but it is a service that can have a dramatic
+                  impact on your marketing efforts.
+                  <br />
+                  Link shorteners work by transforming any long URL into a
+                  shorter, more readable link. When a user clicks the shortened
+                  version, they’re automatically forwarded to the destination
+                  URL.
+                  <br />
+                  Think of a short URL as a more descriptive and memorable
+                  nickname for your long webpage address. You can, for example,
+                  use a short URL like bit.ly/CelebrateBitly so people will have
+                  a good idea about where your link will lead before they click
+                  it.
+                  <br />
+                  If you’re contributing content to the online world, you need a
+                  URL shortener.
+                  <br />
+                  Make your URLs stand out with our easy to use free link
+                  shortener above.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-2">
+                <AccordionTrigger> Benefits of a short URL</AccordionTrigger>
+                <AccordionContent>
+                  How many people can even remember a long web address,
+                  especially if it has tons of characters and symbols? A short
+                  URL can make your link more memorable. Not only does it allow
+                  people to easily recall and share your link with others, it
+                  can also dramatically improve traffic to your content.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-3">
+                <AccordionTrigger> What is a Custom URL?</AccordionTrigger>
+                <AccordionContent>
+                  Custom URL allow you to generate the usr end of your choice.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+        </div>
       </main>
       <Footer />
     </>

@@ -6,12 +6,17 @@ interface user {
   password: String;
 }
 const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
-export const generateURL = async (url: String, access_token: String | null) => {
+export const generateURL = async (
+  url: String,
+  customEndPoint: String,
+  access_token: String | null
+) => {
   axios.defaults.headers.common = {
     Authorization: `Bearer ${access_token}`,
   };
   const response = await axios.post(`${BASE_URL}/v1/urls/insert`, {
     full_url: url,
+    custom_endpoint: customEndPoint,
   });
   return response;
 };

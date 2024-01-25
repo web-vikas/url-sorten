@@ -21,6 +21,7 @@ import { getURLs } from "../action";
 import useStore from "../store";
 import { useToast } from "@/components/ui/use-toast";
 import Header from "@/components/Header";
+import { ScrollArea } from "@/components/ui/scroll-area";
 type MyData = {
   _id: string;
   id: string;
@@ -32,7 +33,11 @@ const columns: ColumnDef<MyData>[] = [
   {
     accessorKey: "_id",
     header: "ID",
-    cell: ({ row }) => <div className="capitalize">{row.getValue("_id")}</div>,
+    cell: ({ row }: any) => (
+      <div className="capitalize">
+        {parseInt(row.getValue("_id").toString().substring(0, 8), 16)}
+      </div>
+    ),
   },
   {
     accessorKey: "id",
@@ -53,10 +58,13 @@ const columns: ColumnDef<MyData>[] = [
     cell: ({ row }) => (
       <Link
         href={row.getValue("full_url")}
+        className=""
         target="_blank"
         rel="noopener noreferrer"
       >
-        {row.getValue("full_url")}
+        <ScrollArea className=" w-56">
+          {row.getValue("full_url")}
+        </ScrollArea>
       </Link>
     ),
   },
@@ -106,9 +114,9 @@ export default function Page() {
     <>
       <Header />
       <main className="p-2">
-        <h1 className="font-bold text-red-900 text-xl">Your URLs.</h1>
-        <div className="w-full p-2">
-          <div className="rounded-md border">
+        <div className="m-2 md:max-w-[80%] mx-auto">
+        <h1 className="font-bold text-red-900 text-xl my-5">Your URLs.</h1>
+          <div className="rounded-md border ">
             <Table>
               <TableHeader>
                 {table.getHeaderGroups().map((headerGroup) => (
