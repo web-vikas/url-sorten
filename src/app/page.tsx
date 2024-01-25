@@ -23,7 +23,9 @@ export default function Home() {
   const access_token = useStore((state) => state.access_token);
   const { toast } = useToast();
   const [fullURL, setFullURL] = useState(String);
-  const [generatedURL, setGeneratedURL] = useState(String);
+  const [generatedURL, setGeneratedURL] = useState(
+    "https://hit-go.vercel.app/SF4m"
+  );
 
   const handelGenerateURL = async () => {
     setGeneratedURL("");
@@ -46,6 +48,25 @@ export default function Home() {
     <>
       <Header />
       <main>
+        <div className="flex items-center justify-center min-h-64 flex-col">
+          <h1 className="text-7xl font-extrabold">
+            Transforming
+            <span className="text-red-900 hover:border-b-8 cursor-pointer border-red-900 transition-all leading-tight">
+              {"  Links  "}
+            </span>
+            into <br />
+            Meaningful
+            <span className="text-red-900 hover:border-b-8 cursor-pointer border-red-900 transition-all leading-tight">
+              {"  Connections  "}
+            </span>
+            .
+          </h1>
+          <p className="max-w-xl  text-center text-lg my-5">
+            Create short links, QR Codes, and Custom Links pages. Share them
+            anywhere. All inside the IJKL
+            Connections Platform.
+          </p>
+        </div>
         <Card className="max-w-screen-lg m-auto p-5">
           <Tabs defaultValue="sort">
             <TabsList className="grid w-full grid-cols-2">
@@ -100,7 +121,7 @@ export default function Home() {
                             <ClipboardCopyIcon className="text-white p-2" />
                           </Button>
                         </PopoverTrigger>
-                        <PopoverContent className="max-w-24">
+                        <PopoverContent className="max-w-32 text-center">
                           Copied !
                         </PopoverContent>
                       </Popover>

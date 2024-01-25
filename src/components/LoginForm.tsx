@@ -21,7 +21,9 @@ const LoginForm = () => {
   const [password, setPassword] = useState(String);
   return (
     <Dialog>
-      <DialogTrigger>Login</DialogTrigger>
+      <DialogTrigger asChild>
+        <Button>Login</Button>
+      </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Welcome Back !</DialogTitle>

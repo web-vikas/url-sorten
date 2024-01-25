@@ -20,15 +20,15 @@ export default function Header() {
       <div>
         <Link href="/">
           <h1 className="font-extrabold text-2xl">
-            IJKL.<span className="text-red-900">fun</span>
+            IJKL<span className="text-red-900">.</span>
           </h1>
         </Link>
       </div>
       <div className="flex items-center justify-center gap-3">
         {!isLoggedIn ? (
           <div className="flex gap-4">
-            <LoginForm />
             <Register />
+            <LoginForm />
           </div>
         ) : (
           <DropdownMenu>
