@@ -44,6 +44,7 @@ export default function Home() {
   };
   return (
     <>
+      <Header />
       <main>
         <Card className="max-w-screen-lg m-auto p-5">
           <Tabs defaultValue="sort">
@@ -120,6 +121,7 @@ export default function Home() {
           </Tabs>
         </Card>
       </main>
+      <Footer />
     </>
   );
 }

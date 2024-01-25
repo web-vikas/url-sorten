@@ -6,7 +6,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
@@ -19,9 +18,11 @@ export default function Header() {
   return (
     <header className="flex items-center justify-between p-2 px-5">
       <div>
-        <h1 className="font-extrabold text-2xl">
-          Shad.<span className="text-red-900">iv</span>
-        </h1>
+        <Link href="/">
+          <h1 className="font-extrabold text-2xl">
+            Shad.<span className="text-red-900">iv</span>
+          </h1>
+        </Link>
       </div>
       <div className="flex items-center justify-center gap-3">
         {!isLoggedIn ? (

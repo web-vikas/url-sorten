@@ -1,19 +1,13 @@
 "use client";
 
-import * as React from "react";
 import {
   ColumnDef,
-  SortingState,
-  VisibilityState,
   flexRender,
   getCoreRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import * as React from "react";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
   Table,
   TableBody,
@@ -25,6 +19,8 @@ import {
 import Link from "next/link";
 import { getURLs } from "../action";
 import useStore from "../store";
+import { useToast } from "@/components/ui/use-toast";
+import Header from "@/components/Header";
 type MyData = {
   _id: string;
   id: string;
@@ -74,17 +70,22 @@ const columns: ColumnDef<MyData>[] = [
 ];
 
 export default function Page() {
-  const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = React.useState({});
   const access_token = useStore((state) => state.access_token);
   const [data, setData] = React.useState<MyData[]>([]);
+  const { toast } = useToast();
 
   const fetchData = async () => {
     try {
       const res = await getURLs(access_token);
-      setData(res.data.results);
+      if (res.data.error) {
+        toast({
+          title: "Uh oh! Something went wrong.",
+          description: res.data.error,
+          variant: "destructive",
+        });
+      } else {
+        setData(res.data.results);
+      }
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -99,18 +100,13 @@ export default function Page() {
     data: data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    state: {
-      sorting,
-      columnVisibility,
-      rowSelection,
-    },
   });
 
   return (
     <>
-      <main>
+      <Header />
+      <main className="p-2">
+        <h1 className="font-bold text-red-900 text-xl">Your URLs.</h1>
         <div className="w-full p-2">
           <div className="rounded-md border">
             <Table>
