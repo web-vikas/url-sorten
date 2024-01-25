@@ -23,9 +23,7 @@ export default function Home() {
   const access_token = useStore((state) => state.access_token);
   const { toast } = useToast();
   const [fullURL, setFullURL] = useState(String);
-  const [generatedURL, setGeneratedURL] = useState(
-    "https://hit-go.vercel.app/SF4m"
-  );
+  const [generatedURL, setGeneratedURL] = useState(String);
 
   const handelGenerateURL = async () => {
     setGeneratedURL("");
@@ -63,8 +61,7 @@ export default function Home() {
           </h1>
           <p className="max-w-xl  text-center text-lg my-5">
             Create short links, QR Codes, and Custom Links pages. Share them
-            anywhere. All inside the IJKL
-            Connections Platform.
+            anywhere. All inside the IJKL Connections Platform.
           </p>
         </div>
         <Card className="max-w-screen-lg m-auto p-5">
