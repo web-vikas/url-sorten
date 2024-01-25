@@ -20,7 +20,7 @@ export default function Header() {
       <div>
         <Link href="/">
           <h1 className="font-extrabold text-2xl">
-            Shad.<span className="text-red-900">iv</span>
+            IJKL.<span className="text-red-900">fun</span>
           </h1>
         </Link>
       </div>
