@@ -13,6 +13,7 @@ import { useState } from "react";
 import { useToast } from "./ui/use-toast";
 import { userRegister } from "@/app/action";
 import useStore from "@/app/store";
+import { EnterIcon, PlusCircledIcon, PlusIcon } from "@radix-ui/react-icons";
 
 const Register = () => {
   const { toast } = useToast();
@@ -20,14 +21,17 @@ const Register = () => {
   const [password, setPassword] = useState(String);
   const [phone, setPhone] = useState(String);
   const [confirmPassword, setConfirmPassword] = useState(String);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handelSubmit = async () => {
+    setIsLoading(true);
     if (confirmPassword !== password) {
       toast({
         title: "Uh oh! Something went wrong.",
         description: "Password do not match",
         variant: "destructive",
       });
+      setIsLoading(false);
       return;
     }
     const res = await userRegister({ email, password, phone });
@@ -48,6 +52,7 @@ const Register = () => {
         access_token: res.data.access_token,
       });
     }
+    setIsLoading(false);
   };
   return (
     <Dialog>
@@ -113,7 +118,10 @@ const Register = () => {
           />
         </div>
         <div>
-          <Button onClick={handelSubmit}>Sign Up</Button>
+          <Button onClick={handelSubmit} disabled={isLoading}>
+            <PlusCircledIcon className="mr-2" />
+            {isLoading ? "Registering..." : "Register"}
+          </Button>
         </div>
       </DialogContent>
     </Dialog>

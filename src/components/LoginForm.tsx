@@ -14,10 +14,12 @@ import { userLogin } from "@/app/action";
 import { useState } from "react";
 import { useToast } from "./ui/use-toast";
 import useStore from "@/app/store";
+import { LockClosedIcon } from "@radix-ui/react-icons";
 
 const LoginForm = () => {
   const { toast } = useToast();
   const [email, setEmail] = useState(String);
+  const [isLoading, setIsLoading] = useState(false);
   const [password, setPassword] = useState(String);
   return (
     <Dialog>
@@ -33,6 +35,7 @@ const LoginForm = () => {
         </DialogHeader>
         <form
           onSubmit={async (e) => {
+            setIsLoading(true);
             e.preventDefault();
             const res = await userLogin({ email, password, phone: "" });
             if (res.data.error) {
@@ -52,6 +55,7 @@ const LoginForm = () => {
                 access_token: res.data.access_token,
               });
             }
+            setIsLoading(false);
           }}
         >
           <div className="mb-3">
@@ -83,7 +87,10 @@ const LoginForm = () => {
             />
           </div>
           <div>
-            <Button>Login</Button>
+            <Button disabled={isLoading}>
+              <LockClosedIcon className="mr-2"/>
+              {isLoading ? "Logging In..." : "Login"}
+            </Button>
           </div>
         </form>
       </DialogContent>

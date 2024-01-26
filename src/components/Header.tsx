@@ -11,6 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
+import { Button } from "./ui/button";
 
 export default function Header() {
   const email = useStore((state) => state.email);
@@ -33,10 +34,12 @@ export default function Header() {
         ) : (
           <DropdownMenu>
             <DropdownMenuTrigger>
-              <Avatar>
-                <AvatarImage src="https://github.com/shadcn.png" />
-                <AvatarFallback>{email?.charAt(0)}</AvatarFallback>
-              </Avatar>
+              <Button variant="link">
+                <Avatar>
+                  <AvatarImage src="https://github.com/shadcn.png" />
+                  <AvatarFallback>{email?.charAt(0)}</AvatarFallback>
+                </Avatar>
+              </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
               <DropdownMenuLabel>
