@@ -34,12 +34,12 @@ export default function Header() {
         ) : (
           <DropdownMenu>
             <DropdownMenuTrigger>
-              <Button variant="link">
-                <Avatar>
+              {/* <Button variant="link" > */}
+                <Avatar >
                   <AvatarImage src="https://github.com/shadcn.png" />
                   <AvatarFallback>{email?.charAt(0)}</AvatarFallback>
                 </Avatar>
-              </Button>
+              {/* </Button> */}
             </DropdownMenuTrigger>
             <DropdownMenuContent>
               <DropdownMenuLabel>

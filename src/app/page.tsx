@@ -1,5 +1,7 @@
 "use client";
 import Footer from "@/components/Footer";
+import Image from 'next/image';
+import { Separator } from "@/components/ui/separator";
 import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -62,8 +64,8 @@ export default function Home() {
     <>
       <Header />
       <main>
-        <div className="flex items-center justify-center min-h-64 flex-col">
-          <h1 className="text-7xl font-extrabold">
+        <div className="flex items-center justify-center min-h-64 flex-col mx-2">
+          <h1 className="text-2xl sm:text-4xl md:text-7xl  font-extrabold">
             Transforming
             <span className="text-red-900 hover:border-b-8 cursor-pointer border-red-900 transition-all leading-tight">
               {"  Links  "}
@@ -80,7 +82,7 @@ export default function Home() {
             anywhere. All inside the IJKL Connections Platform.
           </p>
         </div>
-        <Card className="max-w-screen-lg m-auto p-5">
+        <Card className="max-w-screen-lg mx-2 md:m-auto p-5">
           <Tabs defaultValue="sort">
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="sort">Short Link</TabsTrigger>
@@ -254,8 +256,60 @@ export default function Home() {
             </TabsContent>
           </Tabs>
         </Card>
-        <div className="py-7">
-          <div className="md:max-w-3xl mx-auto">
+       
+        <div className="md:flex justify-center items-center my-8 gap-16 sm:text-center">
+          <div className="image">
+            <Image src="/globe.png" height={250} width={450} alt="globel image"/>
+          </div>
+          <div className="m-3">
+            <div className=" pl-8  pr-8 mt-10 text-center">
+              <div className="flex justify-start items-center gap-5">
+              <h1 className="text-3xl font-bold">500K</h1>
+              <div>
+                <p className="text-sm">Globel Paying Customer</p>
+              </div>
+              </div>
+              <Separator />
+              <div className="flex justify-start items-center gap-5 mt-3">
+              <h1 className="text-3xl font-bold">256M</h1>
+              <div>
+                <p className="text-sm">Link or QRCode Created Monthly</p>
+              </div>
+              </div>
+              <Separator />
+              <div className="flex justify-start items-center gap-5 mt-3">
+              <h1 className="text-3xl font-bold">50B</h1>
+              <div>
+                <p className="text-sm">Connections (Click or Scans) Monthly</p>
+              </div>
+              </div>
+              <Separator />
+              <div className="flex justify-start items-center gap-5 mt-3">
+              <h1 className="text-3xl font-bold">800+</h1>
+              <div>
+                <p className="text-sm">Apps intigration</p>
+              </div>
+              </div>
+              <Separator />
+            </div>
+          </div>
+        </div>
+        <div className="md:w-[70%] mx-auto my-16">
+          <h1 className="text-center text-4xl font-bold ">"Best practices" don't actually work.</h1>
+          <div className="text-center mt-6  md:pr-4 pl-4">
+            <p>I&#039;ve written <span className="text-red-900 hover:border-b-8 cursor-pointer border-red-900 transition-all leading-tight">a few thousand words</span> on why traditional &quot;semantic class names&quot; are the reason CSS is hard to maintain, but the truth is you&#039;re never going to believe me until you actually try it. If you can suppress the urge to retch long enough to give it a chance, I really think you&#039;ll wonder how you ever worked with CSS any other way.</p>
+            <div className="flex justify-center items-center mt-5 gap-5">
+              <div>
+                <Image src="/author.gif" height={200} width={50} alt="author logo" className="rounded-full" />
+              </div>
+              <div>
+                <p className="font-bold">Chandan Kumar Maurya</p>
+                <p className="text-sm">Creator of Tailwind CSS</p>
+              </div>
+            </div>
+          </div>
+        </div> <div className="py-7">
+          <div className="md:max-w-3xl mx-auto pl-8 pr-8">
             <h1 className="font-bold text-3xl text-center my-5">
               Frequently asked questions
             </h1>

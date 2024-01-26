@@ -27,17 +27,17 @@ export default function Footer() {
         </ul>
       </div>
       <div className=" flex justify-center items-center text-center mt-4">
-        <ul className="inline-block sm:flex gap-5 ">
+        <ul className="sm:flex gap-5 inline-block  ">
           <Link href="/">
             <li>Home</li>
           </Link>
-          <Link href="/RegisterForm.tsx">
+          <Link href="#">
             <li>Sign Up</li>
           </Link>
-          <Link href="/LoginForm.tsx">
+          <Link href="#">
             <li>Login</li>
           </Link>
-          <Link href="/f&q">
+          <Link href="#">
             <li>F&Q</li>
           </Link>
         </ul>
