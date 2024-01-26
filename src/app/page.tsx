@@ -295,9 +295,9 @@ export default function Home() {
           </div>
         </div>
         <div className="md:w-[70%] mx-auto my-16">
-          <h1 className="text-center text-4xl font-bold ">"Best practices" don't actually work.</h1>
+          <h1 className="text-center text-4xl font-bold ">Best practices dont actually work.</h1>
           <div className="text-center mt-6  md:pr-4 pl-4">
-            <p>I&#039;ve written <span className="text-red-900 hover:border-b-8 cursor-pointer border-red-900 transition-all leading-tight">a few thousand words</span> on why traditional &quot;semantic class names&quot; are the reason CSS is hard to maintain, but the truth is you&#039;re never going to believe me until you actually try it. If you can suppress the urge to retch long enough to give it a chance, I really think you&#039;ll wonder how you ever worked with CSS any other way.</p>
+            <p>I ve written <span className="text-red-900 hover:border-b-8 cursor-pointer border-red-900 transition-all leading-tight">a few thousand words</span> on why traditional semantic class names are the reason CSS is hard to maintain, but the truth is you re never going to believe me until you actually try it. If you can suppress the urge to retch long enough to give it a chance, I really think you ll wonder how you ever worked with CSS any other way.</p>
             <div className="flex justify-center items-center mt-5 gap-5">
               <div>
                 <Image src="/author.gif" height={200} width={50} alt="author logo" className="rounded-full" />
