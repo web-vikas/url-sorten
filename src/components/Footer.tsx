@@ -19,7 +19,7 @@ export default function Footer() {
               <InstagramLogoIcon />
             </li>
           </Link>
-          <Link href="https://www.linkedin.com/in/ichanddan/" target="_blank">
+          <Link href="https://www.linkedin.com/in/web-vikas/" target="_blank">
             <li>
               <LinkedInLogoIcon />
             </li>
